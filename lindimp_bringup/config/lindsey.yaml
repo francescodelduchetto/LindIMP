@@ -1,8 +1,8 @@
 init_cmd: |
   export TMULE=1
   export ROBOT_NAME=lindsey
-  export MMAP=/localhome/lcas/Maps/INB3123-cropped.yaml
-  export TMAP=INB3123
+  export MMAP=/localhome/lcas/Maps/FABLAB.yaml
+  export TMAP=fablab
   export LINDSEY_WS=/localhome/lcas/workspaces/museum_ws
   if [ -r "$LINDSEY_WS" ]; then source "$LINDSEY_WS/devel/setup.bash"; else source /opt/ros/kinetic/setup.bash; fi
 windows: 
