@@ -1,0 +1,24 @@
+init_cmd: |
+  export TMULE=1
+  export LINDSEY_WS=/localhome/lcas/workspaces/museum_ws
+  if [ -r "$LINDSEY_WS" ]; then source "$LINDSEY_WS/devel/setup.bash"; else source /opt/ros/kinetic/setup.bash; fi
+windows: 
+  - name: roscore
+    panes: 
+      - |
+        roscore
+        htop
+  - name: core
+    panes:
+      - roslaunch mongodb_store mongodb_store.launch db_path:=/localhome/lcas/mongos/lindsey machine:=localhost
+  - name: robot
+    panes:
+      - roslaunch strands_bringup strands_robot.launch with_mux:=false
+  - name: cameras
+    panes:
+      - roslaunch strands_bringup strands_cameras.launch head_camera:=true chest_camera:=false
+  - name: ui
+    panes:
+      - roslaunch ff_bringup robpin.launch
+
+
