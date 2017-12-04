@@ -1,5 +1,8 @@
 init_cmd: |
   export TMULE=1
+  export ROBOT_NAME=lindsey
+  export MMAP=/localhome/lcas/Maps/INB3123-cropped.yaml
+  export TMAP=INB3123
   export LINDSEY_WS=/localhome/lcas/workspaces/museum_ws
   if [ -r "$LINDSEY_WS" ]; then source "$LINDSEY_WS/devel/setup.bash"; else source /opt/ros/kinetic/setup.bash; fi
 windows: 
@@ -20,5 +23,14 @@ windows:
   - name: ui
     panes:
       - roslaunch ff_bringup robpin.launch
+  - name: navigation
+    panes:
+      - roslaunch ff_bringup ff_navigation.launch map:=$MMAP topological_map:=$TMAP
+  - name: people
+    panes:
+      - roslaunch perception_people_launch people_tracker_robot.launch log:=true
+  - name: web
+    panes:
+      - cd /localhome/lcas/workspaces/linda/src/www_interface; python -m SimpleHTTPServer
 
 
