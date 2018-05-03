@@ -1,0 +1,26 @@
+{
+  
+"services":
+[
+
+   {
+     "title":"The Collection Map",
+     "image":"./services/map_collection/thumbnail.jpg",
+     "description":"",
+     "url":"./services/map_collection/index.html"
+   },
+   {
+     "title":"Games",
+     "image":"./services/webgame_memory_cards/thumbnail.png",
+     "description":"",
+     "url":"./services/webgame_memory_cards/index.html"
+   },
+  {
+     "title":"L-CAS Videos",
+     "image":"./services/video_gallery/thumbnail.png",
+     "description":"",
+     "url":"./services/video_gallery/index.html"
+   }
+
+]
+}

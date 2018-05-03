@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Linda interface</title> 	
+  <meta charset="utf-8">	
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <script src="js/jquery-1.7.2.min.js"></script>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+      <!--flipclock -->
+		<link rel="stylesheet" href="./widgets/flipclock/flipclock.css">
+		<script src="./widgets/flipclock/libs/prefixfree.min.js"></script>
+		<script src="./widgets/flipclock/flipclock.min.js"></script>
+
+      <!--speechbubble -->
+		<link rel="stylesheet" href="./widgets/speech_tools/speech_tools.css">
+		<script src="./widgets/speech_tools/speech_tools.js"></script>
+
+
+<!-- rosbridge -->
+
+  <script type="text/javascript" src="js/WebSocketTest.js"></script>
+  <script src="js/eventemitter2.js"></script>
+  <script type="text/javascript" src="./js/mjpegcanvas.js"></script>
+  <script src="js/roslib.js"></script>
+
+<style type="text/css">
+
+  body{
+    background-color: white
+  }
+	
+	#header{
+		background-color: #563C55;
+		padding:10px 20px 10px 20px;
+	}
+	#header h2{
+		font-size: 25px;
+		margin-top: 5px;
+		color: white;
+		text-shadow: none;
+		
+	}
+	#title_page h1{
+		font-size: 45px;
+		text-align: center;
+		color: white;
+		text-shadow: none;
+	}
+	
+	#home_button{
+		margin-top: 10px;
+    width: 80px;
+    height: 16px;
+		font-size: 18px;
+	}
+  .flip-clock-wrapper ul{
+    width: 40px;
+    height: 60px;
+    
+  }
+  .flip-clock-wrapper ul li a div div.inn {
+    font-size: 25px;
+  }
+  
+  .ui-bar h1{
+  color: white;
+  text-shadow: none;
+  font-size: 30px;
+    text-align: center;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    padding: .7em 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    outline: 0!important;
+  }
+
+  .logo{
+    
+    height: 90%;
+    border-radius: 5px;
+    /*box-shadow: 0px 0px 10px #111;*/
+    
+  }
+  .logo-h{
+    
+    width: 70%;
+		margin-top: 20px;
+
+
+    
+  }
+  h3{
+  color: black;
+  text-shadow: none;
+  }
+
+  
+iframe {
+    border-width: 0px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+  border-radius: 5px;
+}
+  #id_iframe{
+    width:100%;
+    height:100%;
+    min-height:620px;
+  }
+  
+    #main{
+    width:100%;
+    height:100%;
+    min-height:620px;
+  }	
+  
+   #button-home{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 80px;
+    background-color: black;
+    color: white;
+}
+
+  #popupNavigation{
+  background-color: black;
+  text-align: center;
+  height:600px;
+  width:1000px;
+  color:white;
+    
+}
+/* RESPONSIVE LIST */
+  /* First breakpoint is 48em (768px). 3 column layout. Tiles 250x250 pixels incl. margin at the breakpoint. */
+
+/* Second breakpoint is 63.75em (1020px). 4 column layout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
+@media ( min-width: 48em ) {
+    /* Set a max-width for the last breakpoint to prevent too much stretching on large screens.
+    By setting the max-width equal to the breakpoint width minus padding we keep square tiles. */
+    .responsive-list {
+        width: 100%; /* 1000px */
+        text-align: center;
+        margin: 0 auto;
+        margin-top:100px;
+      margin-left:1%;
+    }
+    .responsive-list li {
+        float: left;
+        width: 20.0%; /* 33.3333% incl. 2 x 1.2% margin */
+        height: 250px;
+        margin: 2px 2px;
+
+    }
+    .ui-content .ui-listview{
+        margin: 0 auto;
+    }
+    .responsive-list li a {
+       
+      width: 100%; /* 33.3333% incl. 2 x 1.2% margin */
+      min-height: 300px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+    }
+  
+      .responsive-list .ui-listview li a ui-btn-icon-right:after {
+        display: none;
+    }
+  
+     .responsive-list li.ui-li-has-thumb {
+       float: left;
+        height: auto; 
+        max-width: 40%;
+        min-height: 200px;
+        max-height: none;
+        margin: 20px 20px;
+    }
+  
+
+.ui-listview .ui-li-has-thumb>.ui-btn>img:first-child, .ui-listview .ui-li-has-thumb .ui-li-thumb {
+        min-width: 90%;
+        min-height: 90%;
+  margin: 10px 10px;
+
+  }
+  .responsive-list .ui-listview li .ui-btn{
+
+   
+    width: 40%;
+    min-height: 200px;
+   /* border-color: darkgray;
+    border-width: 1px;
+    */
+  /*  -moz-box-shadow: 0px 0px 9px #111;
+    -webkit-box-shadow: 0px 0px 9px #111;*/
+    box-shadow: 10px 10px 9px #111;
+
+  }
+  
+    .responsive-list>.ui-listview>li.ui-first-child, .responsive-list>.ui-listview>li.ui-last-child{
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+
+  }
+  .ui-listview>li h2 {
+    
+    white-space: normal;
+    overflow: visible;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+  }
+  
+  .ui-listview>li h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: .125em 1em;
+    bottom: 10px;
+    color: white;
+    padding-left:30px;
+  }
+  
+  .ui-li-has-thumb h2 {
+    background: rgba(0,45,98,.8);
+    height: 54%;
+    margin-bottom: 10px;
+    
+  }
+
+
+}
+
+</style>
+
+
+
+<script>
+
+var ros = null;
+var pub_array_command=null;
+var pub_interface_status=null;
+  
+var listener_speech=null;
+var listener_speech_test=null;
+var listener_next_tasks=null;
+var	listener_ptu_status=null;
+
+	var speak_goal_action=null;
+	var speak_client_action=null;
+	
+	var nav_client_action=null;
+	var nav_goal_action=null;
+	
+	var ptu_client_action=null;
+	var ptu_goal_action=null;
+
+	var status_ptu=null;
+	var b_waiting_navigation=false;
+
+
+function start_ros(){
+
+
+  // Connecting to ROS
+  // -----------------
+  ros = new ROSLIB.Ros();
+
+  // If there is an error on the backend, an 'error' emit will be emitted.
+  ros.on('error', function(error) {
+    //console.log(error);
+   $('#console_html').html('</br>Rosbridge:Error  Connection!<br>');
+  });
+
+  // Find out exactly when we made a connection.
+  ros.on('connection', function() {
+    //console.log('Connection made!');
+    $('#console_html').html('</br>Rosbridge: Connection made!<br>');
+  })
+  // Create a connection to the rosbridge WebSocket server.
+    //ros.connect('ws://10.82.0.83:9090');
+   ros.connect('ws://10.82.0.70:9090');
+    
+  // Publishing a Topic
+  // ------------------
+
+
+   pub_interface_status = new ROSLIB.Topic({
+    ros : ros,
+    name : '/interface/status',
+    messageType : 'std_msgs/String'
+  });
+
+	speak_client_action =new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/speak',
+    actionName : 'mary_tts/maryttsAction'
+  });
+	nav_client_action =new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/topological_navigation',
+    actionName : 'topological_navigation/GotoNodeAction'
+  });
+	  ptu_client_action =new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/SetPTUState',
+    actionName : 'flir_pantilt_d46/PtuGotoAction'
+  });
+	
+Subscribe();
+
+
+
+}
+ 
+function Subscribe(){
+
+  //Subscribing to a Topic
+  //----------------------
+
+  // Like when publishing a topic, we first create a Topic object with details of the topic's name 
+  // and message type. Note that we can call publish or subscribe on the same topic object.
+
+  listener_speech = new ROSLIB.Topic({
+    ros : ros,
+    name : '/speak/goal',
+    messageType : 'mary_tts/maryttsActionGoal'
+  });
+
+	listener_speech_test = new ROSLIB.Topic({
+    ros : ros,
+    name : '/speech_command',
+    messageType : 'std_msgs/String'
+  });
+	
+  listener_next_tasks = new ROSLIB.Topic({
+    ros : ros,
+    name : '/next_tasks',
+    messageType : '/routines/next_tasks'
+  });
+
+	listener_ptu_status = new ROSLIB.Topic({
+    ros : ros,
+    name : '/ptu/state',
+    messageType : 'sensor_msgs/JointState'
+  });
+
+
+
+ 
+  // Then we add a callback to be called every time a message is published on this topic.
+
+
+  listener_speech_test.subscribe(function(msg) {
+
+    console.log('listener_speech_test msg.menu='+msg.data);
+    Show_speech(msg.data,'nonblock');
+
+  });
+	
+
+	
+  listener_speech.subscribe(function(msg) {
+
+    console.log('listener_speech msg.menu='+msg.goal.text);
+    Show_speech(msg.goal.text,'nonblock');
+
+  });
+	
+	  listener_next_tasks.subscribe(function(msg) {
+
+    console.log('listener_next_tasks');
+    //Update_tasks_list(msg.data);
+
+  });
+			listener_ptu_status.subscribe(function(message) {
+
+			
+			if 	(message.position[0]<-3.10 )status_ptu="interaction";
+			else if (0.0 <= message.position[0] && message.position[0] < 0.05 )status_ptu="navigation";
+
+
+  }); 
+
+}
+  
+
+function Command_speech(txt){
+       
+    //Show_speech(txt,'nonblock');
+	 	var str_target=txt;
+	
+		speak_goal_action = new ROSLIB.Goal({
+			actionClient : speak_client_action,
+			goalMessage : {
+				text : str_target
+
+			}
+		});
+	 // Then we create the payload to be published. The object we pass in to ros.Message matches the 
+		console.log('goal_action.send() ' );
+		// And finally, publish.
+		speak_goal_action.send();
+	 	speak_goal_action.on('result', function(result) { 
+      console.log('speak_goal_action Final Result: ' ); //result.state sensor_msgs/JointState
+		
+
+  });
+	}	
+
+function Interface_status(str){
+
+var str_goal=""+str+"";
+//log_html('Published message ' + str_goal);	
+ goal = new ROSLIB.Message({
+        data: str_goal
+  });
+ // Then we create the payload to be published. The object we pass in to ros.Message matches the 
+
+  // And finally, publish.
+  pub_interface_status.publish(goal);
+
+}
+
+
+
+</script>
+
+
+</head>
+
+<body onload="start_ros();">
+
+	<div id="robotspeech" data-display="overlay" class="speaking-top-left" style="display:none;" data-transition="slidedown" data-overlay-theme="a" ></div>
+  <div id="userspeech" data-display="overlay" class="thinking-bottom-right" style="display:none;" data-overlay-theme="a" ></div>
+
+  
+<div data-role="page" id="page_home" >
+
+ <div data-role="header" >   
+
+    <div id="header" class="ui-grid-b">
+        <div class="ui-block-a" style="width: 30%" ><div  style="height:100px"><img src="./images/logo-collection.png" class="logo-h"></div></div>
+        <div class="ui-block-b" style="width: 60%" >
+					<div  class="ui-grid-a" id="countdown_tour"  style="height:100px;">
+						<div class="ui-block-a" style="width: 30%" >
+							<h2>Next tour in :</h2>
+						</div>
+						<div class="ui-block-b" style="width: 60%" >
+						<div id="countdown" style="margin-left:10px;margin-top:30px;"></div>
+
+						</div>
+					</div>
+				</div>
+        <div class="ui-block-c" style="width: 10%"><div style="height:100px"><img src="./images/lcas.png" class="logo" style="float: right"></div></div>
+    </div><!-- /grid-b -->
+  </div>
+  
+<div id="main" role="main" class="ui-content">
+
+<div  class="responsive-list" >
+  <ul id ="list_services" data-role="listview"  data-inset="true">
+
+  </ul>
+
+</div>
+</div><!-- /content -->
+
+
+<div data-role="footer" data-position="fixed" style="background:#000000;border:0px;"> 
+
+</div> 
+
+</div><!-- /page -->
+<div data-role="page" id="page_service" >
+
+    <div data-role="popup" id="popupNavigation" data-overlay-theme="a" data-theme="a" data-dismissible="false">
+		<div data-role="content" data-theme="d" data-mini="true" class="ui-corner-bottom ui-content">
+      <h1>Next stop:</h1>
+       <h2 id="nav_target_html" size="5px"></h2>
+           <div id="threed-map"></div>
+
+        </div>
+</div>
+ <div data-role="header" >   
+
+    <div id="header" class="ui-grid-b">
+        <div class="ui-block-a" style="width: 20%" ><div  style="height:100px"><img src="./images/logo-collection.png" class="logo-h"></div></div>
+        <div class="ui-block-b" style="width: 60%" >
+						<div id="title_page">
+							<h1></h1>
+						</div>
+				</div>
+				
+        <div class="ui-block-c" style="width: 20%">
+						<div  class="ui-grid-a"  style="height:100px;">
+						<div class="ui-block-a" >
+							<a id="home_button" href="#page_home"  class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-top ui-btn-b"  >Home</a>
+							
+						</div>
+						<div class="ui-block-b" style="height:100px;">
+							<img src="./images/lcas.png" class="logo" style="float: right">
+						</div>
+					</div>
+					
+				</div>
+    </div><!-- /grid-b -->
+  </div>
+	
+  <div data-role="content" >
+
+    <iframe id="id_iframe"  scrolling="no" >
+	</iframe>
+
+
+  </div><!-- /content -->
+  
+</div><!-- /page -->
+
+	
+ <script>
+	 
+	 $(function () { 
+		 restart_Countdown(0);
+		});
+  
+
+function Read_file(name){
+
+  var name_file='./'+name+'.json';
+
+  console.log('Read_file '+name_file);
+  var ret_data=null;
+   $.ajax({
+      url: name_file,
+      async: false,
+      cache:false,
+      dataType: 'json',
+      success: function(data) {
+        ret_data = data;
+
+      }
+
+  });
+
+  return ret_data;
+
+}
+$(function () {
+  
+json_data=Read_file("services");
+data_services=json_data.services;
+//console.log('data_services='+data_services);
+  
+ for (var i=0;i<data_services.length;i++){
+  var item=data_services[i];
+    $('#list_services').append(
+        $('<li>').append(
+            $('<a>').attr("href","#page_service").bind('vclick',function(){
+            var index=$(this).parent().index()
+
+             Init_service(index);
+
+            }).append(
+              $('<img>').attr("class","ui-li-thumb").attr("src",item.image),
+              $('<h2>').text(item.title),
+              $('<p>').text(item.description)
+            )
+
+        )
+    );
+   
+ }
+
+
+  $('#list_services').enhanceWithin().listview('refresh');
+
+});
+   
+	 	function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+	 
+	 function Init_service(service_index){
+		 var current_service=data_services[service_index]
+		 
+		 $("#title_page h1").html(current_service.title);
+		 $(document).find("#id_iframe").attr("src", current_service.url);
+	 }
+	 
+		function restart_Countdown(goal_time){
+			clock = $('#countdown').FlipClock({
+			// ... your options here
+			//clockFace:'TwentyFourHourClock'
+			clockFace:'HourlyCounter'
+
+
+			});
+			var d = new Date();
+			var mseg_now = d.getTime();  
+			var d = new Date();
+			d.setHours(15);
+			var mseg_nexttour=mseg_now+d; //goal_time; ///
+			var mseg_count=mseg_nexttour-mseg_now;
+			var min_count=mseg_count/1000;
+			clock.setTime(70000);  //1 hour 3600
+			clock.setCountdown(true);
+
+	}
+	 
+	 
+function Show_speech(str,mode){
+
+  $speech = $("#robotspeech")
+	$speech.empty();
+  $speech.text(str).css({
+    top: 40 ,
+    left: 10
+  });
+
+    $speech.slideDown();
+    $speech.css("display","block");
+	
+	if(mode=='nonblock'){
+    var time=str.length*100;
+		 console.log('Show_speech time='+time);
+  
+
+    $speech.delay(time).slideUp();
+	}
+}
+
+function Show_question(data,target){
+
+  
+  var temp=data.request[Math.floor(Math.random()*data.request.length)];
+  console.log('Show_speech temp='+temp);
+  var str=String(temp.speech);
+  console.log('Show_speech str='+str);
+	
+	Command_speech(str);
+	
+	$robotspeech = $("#robotspeech");
+	$robotspeech.empty();
+  $robotspeech.text(str).css({
+    top: 40 ,
+    left: 10
+  });
+
+
+	
+    $robotspeech.slideDown();
+    $robotspeech.css("display","block");
+	
+	
+  $userspeech = $("#userspeech");
+  $userspeech.empty();
+	
+	
+	$speechrecognition= new Bubble({
+    object: '#robotspeech'
+	});
+	
+	var elem_recognition=$speechrecognition.init_recognition();
+
+
+  	$userspeech.append(
+      	$('<ul>').attr('data-role','listview').attr('data-split-theme','a').attr('data-inset','true').append(
+					$('<li>').attr('style','border:0px;').append(
+						elem_recognition
+					),
+					$('<li>').attr('style','border:0px;').append(
+						$('<div>').attr('class','ui-grid-a').attr('style','width:60%;text-align: center;margin-left: auto;margin-right:auto;border:0px;').append(
+								$('<div>').attr('class','ui-block-a').append(
+										$('<button>').attr('style', 'background:green;padding-left:20px;padding-right:20px;height:60px;').attr('id','OK').text('YES').bind('vclick',function(){					
+												$robotspeech.slideUp();
+												$userspeech.slideUp();
+												var temp_go=data.response[0].speech[Math.floor(Math.random()*data.response[0].speech.length)];
+
+												var str_go=String(temp_go);
+												Show_speech(str_go);
+												console.log('After speech target=' +target);
+												Command_navigation(target);
+
+										})
+								),
+								$('<div>').attr('class','ui-block-b').append(
+										$('<button>').attr('style', 'background:red;padding-left:20px;padding-right:20px;height:60px;').attr('id','CANCEL').text('NO').bind('vclick',function(){								
+											$robotspeech.slideUp();
+											$userspeech.slideUp();
+											$("#overlay").remove();
+										})
+								)
+						)
+					)
+			)
+			
+
+		
+	).enhanceWithin();
+  
+
+    $userspeech.slideDown();
+    $userspeech.css("display","block");
+
+ 
+}
+
+	 function Command_navigation(waypoint){
+       
+      /**/ $('#nav_target_html').html(waypoint);
+		 $('#popupNavigation').popup('open');
+		 console.log('Command_navigation'+ waypoint);
+		var str_target=String(waypoint) 
+		nav_goal_action = new ROSLIB.Goal({
+    actionClient : nav_client_action,
+    goalMessage : {
+      target : str_target,
+    	no_orientation:false
+			
+    }
+  });
+ // Then we create the payload to be published. The object we pass in to ros.Message matches the 
+	console.log('status_ptu ' +status_ptu);
+		var sleep_time=1;
+		if (status_ptu!="navigation"){
+			PTU_pose_command("navigation");
+			/*while(status_ptu!="navigation"){
+
+				console.log('waiting status_ptu' );
+				sleep(1000);
+			}
+			*/
+			sleep_time=3000;
+			}
+		 setTimeout(function(){
+    		// And finally, publish.
+			 nav_goal_action.send();
+				 console.log('nav_goal_action.send() ' );
+				 nav_goal_action.on('feedback', function(feedback) { 
+					console.log('Final feedback: ' + feedback.route); //result.state sensor_msgs/JointState
+
+						 $("#nav_target_html").append(
+					 $('<p>').text(feedback.route)
+				);
+			});
+
+			nav_goal_action.on('result', function(result) { 
+					/*console.log('Final Result: ' + result.success); 
+				 $("#nav_target_html").append(
+					 $('<p>').text(result.success)
+
+				);
+				*/
+
+				PTU_pose_command("interaction");
+				setTimeout(function(){
+						$('#popupNavigation').popup('close');
+				}, 3000);
+			});
+		}, sleep_time);
+
+		 
+		 
+	 }
+	 
+function PTU_pose_command(cmd){
+
+var pose_pan=0.0;
+if(cmd=='navigation')pose_pan=0.0;
+else if(cmd=='interaction')pose_pan=-180.0;
+
+	ptu_goal_action = new ROSLIB.Goal({
+    actionClient : ptu_client_action,
+    goalMessage : {
+      pan : pose_pan,
+    	tilt:0.0,
+    	pan_vel:80.0,  //min_pan_speed=4.0, max_pan_speed=140.0
+    	tilt_vel:0.0
+    }
+  });
+ // Then we create the payload to be published. The object we pass in to ros.Message matches the 
+	console.log('goal_ptu_action.send() ' );
+  // And finally, publish.
+  ptu_goal_action.send();
+		
+	ptu_goal_action.on('result', function(result) { 
+      console.log('Final Result: ' + result.state.position); //result.state sensor_msgs/JointState
+		
+
+  });
+
+	
+
+}
+  </script>
+</body>
+</html>
