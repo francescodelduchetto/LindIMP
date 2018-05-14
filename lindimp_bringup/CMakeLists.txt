@@ -8,8 +8,8 @@ project(lindimp_bringup)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  strands_navigation
-  strands_social
+#  strands_navigation
+#  strands_social
   strands_ui
 )
 

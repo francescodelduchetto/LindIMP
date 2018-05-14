@@ -1,0 +1,11 @@
+<launch>
+  <arg name="lindimp_ui_home" default="$(find lindimp_ui)"/>
+
+  <node
+    name="start_ui"
+    pkg="lindimp_ui"
+    type="start_ui.sh"
+    output="screen"
+    args="$(arg lindimp_ui_home)">
+  </node>
+</launch>

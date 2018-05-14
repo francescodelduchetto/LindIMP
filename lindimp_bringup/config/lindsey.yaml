@@ -31,6 +31,6 @@ windows:
       - roslaunch perception_people_launch people_tracker_robot.launch log:=true
   - name: web
     panes:
-      - cd /localhome/lcas/workspaces/linda/src/www_interface; python -m SimpleHTTPServer
+      - roslaunch lindimp_ui start_ui.launch
 
 
